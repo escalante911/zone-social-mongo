@@ -1,5 +1,6 @@
 defmodule UserRepo do
 
+# Se ejecuta una sola vez al incicio de los procesos guardando el retorno en una variable conn
 def conec(db) do
   {:ok, conn} = Mongo.start_link(url: "mongodb://localhost:27027/#{db}", username: "root", password: "pass", auth_source: "admin")
   conn
