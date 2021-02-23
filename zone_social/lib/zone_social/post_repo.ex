@@ -5,6 +5,10 @@ def conec(db) do
   conn
 end
 
+# Consulto el usuario
+# lo guardo en una variable y luego saco el mapa de alli [x] = x
+# extraigo el id y = x["_id"]
+# le envio al modulo la conexión, el mensaje y el usuario (conn, mensaje, usuario)
 # Inserta un post a la base de datos
 def insert_post(conn, mensaje, usuario) do
   data = %{post: mensaje, user: usuario}

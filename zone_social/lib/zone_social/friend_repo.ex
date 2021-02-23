@@ -18,13 +18,17 @@ def update_user(conn, nombre, usuario) do
   # Map.put(data, :id, result.inserted_id)
 end
 
-def add_friend(conn, user, friend) do
-  result = Mongo.find(conn, "user", %{"name": friend})
-  result |> Enum.to_list() |> IO.inspect
+# Consulto el usuario y el amigo
+# lo guardo en una variable y luego saco el mapa de alli [x] = x
+# extraigo el id y = x["_id"]
+# le envio al modulo la conexión, el usuario y el id del amigo (conn, user, friend, n, y)
+def add_friend(conn, user, friend, id_user, id_friend) do
   data = %{name: user}
-  actu = %{"$addToSet": %{friend: result}}
+  data2 = %{name: friend}
+  actu = %{"$addToSet": %{friend: id_friend}}
+  actu2 = %{"$addToSet": %{friend: id_user}}
   Mongo.update_one!(conn, "user", data, actu)
-  # Map.put(:ok, result._id, "Listo")
+  Mongo.update_one!(conn, "user", data2, actu2)
 end
 
 end
